@@ -12,15 +12,85 @@
     />
 
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
 
     <title>Frontend Mentor | Frontend quiz app</title>
   </head>
   <body>
     <main class="mainContainer">
       <section class="gridContainer">
-        <div class="gridItem gridOne"></div>
-        <div class="gridItem gridTwo"></div>
-        <div class="gridItem gridThree"></div>
+        <div class="gridItem gridOne">
+          <img
+            src="assets/images/icon-sun-dark.svg"
+            alt="sunImage"
+            class="sunImage"
+          />
+          <label class="switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+          <img
+            src="assets/images/icon-moon-dark.svg"
+            alt="moonImage"
+            class="moonImage"
+          />
+        </div>
+        <div class="gridItem gridTwo">
+          <h1 class="welcomeText">
+            Welcome to the <br /><span class="highlitedText"
+              >Frontend Quiz!</span
+            >
+          </h1>
+          <h2 class="secondaryText"><i>Pick a subject to get started.</i></h2>
+        </div>
+        <div class="gridItem gridThree">
+          <div class="optionDiv">
+            <span class="html">
+              <img
+                src="assets/images/icon-html.svg"
+                alt="htmlIcon"
+                class="htmlIcon"
+            /></span>
+
+            <h2 class="optionText">HTML</h2>
+          </div>
+          <div class="optionDiv">
+            <span class="css"
+              ><img
+                src="assets/images/icon-css.svg"
+                alt="cssIcon"
+                class="cssIcon"
+            /></span>
+            <h2 class="optionText">CSS</h2>
+          </div>
+          <div class="optionDiv">
+            <span class="javasript">
+              <img
+                src="assets/images/icon-js.svg"
+                alt="javasriptIcon"
+                class="javasriptIcon"
+              />
+            </span>
+
+            <h2 class="optionText">Javascript</h2>
+          </div>
+          <div class="optionDiv">
+            <span class="accessibility">
+              <img
+                src="assets/images/icon-accessibility.svg"
+                alt="accessibilityIcon"
+                class="accessibilityIcon"
+              />
+            </span>
+
+            <h2 class="optionText">Accessibility</h2>
+          </div>
+        </div>
       </section>
     </main>
   </body>
