@@ -23,75 +23,119 @@
   </head>
   <body>
     <main class="mainContainer">
-      <section class="gridContainer">
-        <div class="gridItem gridOne">
-          <img
-            src="assets/images/icon-sun-dark.svg"
-            alt="sunImage"
-            class="sunImage"
-          />
-          <label class="switch">
-            <input type="checkbox" />
-            <span class="slider round"></span>
-          </label>
-          <img
-            src="assets/images/icon-moon-dark.svg"
-            alt="moonImage"
-            class="moonImage"
-          />
-        </div>
-        <div class="gridItem gridTwo">
-          <h1 class="welcomeText">
-            Welcome to the <br /><span class="highlitedText"
-              >Frontend Quiz!</span
-            >
-          </h1>
-          <h2 class="secondaryText"><i>Pick a subject to get started.</i></h2>
-        </div>
-        <div class="gridItem gridThree">
-          <div class="optionDiv">
-            <span class="html">
-              <img
-                src="assets/images/icon-html.svg"
-                alt="htmlIcon"
-                class="htmlIcon"
-            /></span>
+      <div class="landing">
+        <section class="gridContainer">
+          <div class="gridItem gridOne">
+            <img
+              src="assets/images/icon-sun-dark.svg"
+              alt="sunImage"
+              class="sunImage"
+            />
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+            <img
+              src="assets/images/icon-moon-dark.svg"
+              alt="moonImage"
+              class="moonImage"
+            />
+          </div>
+          <div class="gridItem gridTwo">
+            <h1 class="welcomeText">
+              Welcome to the <br /><span class="highlitedText"
+                >Frontend Quiz!</span
+              >
+            </h1>
+            <h2 class="secondaryText"><i>Pick a subject to get started.</i></h2>
+          </div>
+          <div class="gridItem gridThree">
+            <div class="optionDiv" id="htmlOption">
+              <span class="html">
+                <img
+                  src="assets/images/icon-html.svg"
+                  alt="htmlIcon"
+                  class="htmlIcon"
+              /></span>
 
-            <h2 class="optionText">HTML</h2>
+              <h2 class="optionText">HTML</h2>
+            </div>
+            <div class="optionDiv">
+              <span class="css"
+                ><img
+                  src="assets/images/icon-css.svg"
+                  alt="cssIcon"
+                  class="cssIcon"
+              /></span>
+              <h2 class="optionText">CSS</h2>
+            </div>
+            <div class="optionDiv">
+              <span class="javasript">
+                <img
+                  src="assets/images/icon-js.svg"
+                  alt="javasriptIcon"
+                  class="javasriptIcon"
+                />
+              </span>
+
+              <h2 class="optionText">Javascript</h2>
+            </div>
+            <div class="optionDiv">
+              <span class="accessibility">
+                <img
+                  src="assets/images/icon-accessibility.svg"
+                  alt="accessibilityIcon"
+                  class="accessibilityIcon"
+                />
+              </span>
+
+              <h2 class="optionText">Accessibility</h2>
+            </div>
           </div>
-          <div class="optionDiv">
-            <span class="css"
-              ><img
-                src="assets/images/icon-css.svg"
-                alt="cssIcon"
-                class="cssIcon"
-            /></span>
-            <h2 class="optionText">CSS</h2>
-          </div>
-          <div class="optionDiv">
-            <span class="javasript">
+        </section>
+      </div>
+      <div class="htmlQuestions">
+        <section class="htmlDiv">
+          <div class="gridItemHTML gridHtmlOne">
+            <div class="optionType">
+              <span class="html">
+                <img src="" alt="htmlIcon" class="htmlIcon" id="imageIC"
+              /></span>
+
+              <h2 class="optionText" id="optionIn"></h2>
+            </div>
+            <div class="settings">
               <img
-                src="assets/images/icon-js.svg"
-                alt="javasriptIcon"
-                class="javasriptIcon"
+                src="assets/images/icon-sun-dark.svg"
+                alt="sunImage"
+                class="sunImage"
               />
-            </span>
-
-            <h2 class="optionText">Javascript</h2>
-          </div>
-          <div class="optionDiv">
-            <span class="accessibility">
+              <label class="switch">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
               <img
-                src="assets/images/icon-accessibility.svg"
-                alt="accessibilityIcon"
-                class="accessibilityIcon"
+                src="assets/images/icon-moon-dark.svg"
+                alt="moonImage"
+                class="moonImage"
               />
-            </span>
-
-            <h2 class="optionText">Accessibility</h2>
+            </div>
           </div>
-        </div>
-      </section>
+          <div class="gridItemHTML gridHtmlTwo">
+            <p id="questionCount"></p>
+            <div class="questionContainer"></div>
+          </div>
+          <div class="gridItemHTML gridHtmlThree">
+            <div class="optionContainer"></div>
+            <div class="optionContainer"></div>
+            <div class="optionContainer"></div>
+            <div class="optionContainer"></div>
+            <button class="nextQuestion">Submit Answer</button>
+          </div>
+        </section>
+      </div>
     </main>
+
+    <script src="index.js"></script>
   </body>
 </html>
