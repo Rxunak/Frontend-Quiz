@@ -267,7 +267,7 @@ input:checked + .slider:before {
   font-weight: 450;
 }
 
-.nextQuestion {
+.confirmQuestion, .nextQuestion {
   height: 63px;
   width: 470px;
   border-radius: 15px;
@@ -279,9 +279,17 @@ input:checked + .slider:before {
   cursor: pointer;
 }
 
+.nextQuestion {
+  display: none;
+}
+
 .disableButton {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.correctAnswer {
+  outline: 2px solid #2fd887;
 }
 
 .sliderContainer {

@@ -9,7 +9,8 @@
 
 const questionContainer = document.querySelector(".questionContainer");
 const optionContainer = document.querySelectorAll(".optionContainer");
-const nextButton = document.querySelector(".nextQuestion");
+const nextButton = document.querySelector(".confirmQuestion");
+const nextQuestion = document.querySelector(".nextQuestion");
 const optionHeader = document.getElementById("optionIn");
 const image = document.getElementById("imageIC");
 const questionCount = document.getElementById("questionCount");
@@ -32,7 +33,6 @@ fetch("data.json")
 function getData(data) {
   informationData = data;
   handleQuestion(currentQuestionIndex, data);
-  nextButton.classList.add("disableButton");
 }
 
 function handleQuestion(indexx, info) {
@@ -59,11 +59,14 @@ function handleQuestion(indexx, info) {
       item.classList.remove("active");
     }
   });
+
+  handleActiveButton();
+  // correctAnswer();
 }
 
 function handleActive() {
-  optionContainer.forEach((item, index) => {
-    item.addEventListener("click", (event) => {
+  optionContainer.forEach((item) => {
+    item.addEventListener("click", () => {
       optionContainer.forEach((option) => {
         option.classList.remove("active");
 
@@ -73,22 +76,56 @@ function handleActive() {
       item.classList.add("active");
       item.querySelector("#optionSpan").style.backgroundColor = "#a729f5";
       item.querySelector("#optionSpan").style.color = "#ffffff";
+      handleActiveButton();
+      // correctAnswer(currentQuestionIndex, currenQuestion);
     });
   });
 }
 
 handleActive();
 
+function handleActiveButton() {
+  const hasActiveClass = document.getElementsByClassName("active").length > 0;
+
+  if (hasActiveClass) {
+    nextButton.disabled = false;
+    nextButton.classList.remove("disableButton");
+  } else {
+    nextButton.disabled = true;
+    nextButton.classList.add("disableButton");
+  }
+}
+
+function correctAnswer(questionIndex) {
+  const hasActiveClass = document.querySelector(".active");
+
+  const answerText = hasActiveClass?.querySelector(".answerText").textContent;
+  const correctAns =
+    informationData?.quizzes[0]?.questions[questionIndex]?.answer;
+
+  console.log(answerText);
+  console.log(correctAns);
+
+  if (answerText === correctAns) {
+    hasActiveClass.classList.replace("active", "correctAnswer");
+    nextQuestion.style.display = "block";
+    nextButton.style.display = "none";
+  }
+}
+
 //Next Button Functionality
 
-nextButton.disabled = true;
-
 nextButton.addEventListener("click", (event) => {
-  currentQuestionIndex++;
+  correctAnswer(currentQuestionIndex);
+});
 
+nextQuestion.addEventListener("click", () => {
+  document.querySelector(".correctAnswer")?.classList.remove("correctAnswer");
+  currentQuestionIndex++;
   if (currenQuestion <= 9) {
     currenQuestion++;
   }
-
   handleQuestion(currentQuestionIndex, informationData);
+  nextQuestion.style.display = "none";
+  nextButton.style.display = "block";
 });
