@@ -243,6 +243,7 @@ input:checked + .slider:before {
   gap: 20px;
   align-items: center;
   padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .active {

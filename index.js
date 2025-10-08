@@ -103,13 +103,22 @@ function correctAnswer(questionIndex) {
   const correctAns =
     informationData?.quizzes[0]?.questions[questionIndex]?.answer;
 
-  console.log(answerText);
-  console.log(correctAns);
-
   if (answerText === correctAns) {
     hasActiveClass.classList.replace("active", "correctAnswer");
     nextQuestion.style.display = "block";
     nextButton.style.display = "none";
+
+    optionContainer.forEach((item) => {
+      if (item.classList.contains("correctAnswer")) {
+        item.querySelector("#optionSpan").style.backgroundColor = "#2fd887";
+        let img = document.createElement("img");
+        img.src = "assets/images/icon-correct.svg";
+        img.style.width = "28px";
+        img.style.marginLeft = "auto";
+
+        item.appendChild(img);
+      }
+    });
   }
 }
 
