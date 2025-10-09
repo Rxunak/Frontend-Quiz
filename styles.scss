@@ -79,6 +79,9 @@ main {
   height: 90px;
   width: 500px;
   border-radius: 20px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .optionText {
@@ -215,7 +218,7 @@ input:checked + .slider:before {
 }
 
 .htmlQuestions {
-  display: block;
+  display: none;
 }
 
 #questionCount {
@@ -339,6 +342,10 @@ input:checked + .slider:before {
   outline: 2px solid $green-500;
 }
 
+.wrongAnswer {
+  outline: 2px solid $red-500;
+}
+
 .sliderContainer {
   width: 80%;
   display: flex;
@@ -381,4 +388,8 @@ input:checked + .slider:before {
 
 .sliderProgress:hover {
   opacity: 1;
+}
+
+.scorePage {
+  display: block;
 }

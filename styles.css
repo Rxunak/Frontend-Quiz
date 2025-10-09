@@ -74,6 +74,9 @@ main {
   width: 500px;
   border-radius: 20px;
 }
+.optionDiv:hover {
+  cursor: pointer;
+}
 
 .optionText {
   color: #313e51;
@@ -190,7 +193,7 @@ input:checked + .slider:before {
 }
 
 .htmlQuestions {
-  display: block;
+  display: none;
 }
 
 #questionCount {
@@ -293,6 +296,10 @@ input:checked + .slider:before {
   outline: 2px solid #2fd887;
 }
 
+.wrongAnswer {
+  outline: 2px solid #ee5454;
+}
+
 .sliderContainer {
   width: 80%;
   display: flex;
@@ -335,4 +342,8 @@ input:checked + .slider:before {
 
 .sliderProgress:hover {
   opacity: 1;
+}
+
+.scorePage {
+  display: block;
 }/*# sourceMappingURL=styles.css.map */

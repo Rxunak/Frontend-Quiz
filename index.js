@@ -1,6 +1,6 @@
-// const htmlOption = document.getElementById("htmlOption");
-// const mainContainer = document.querySelector(".gridContainer");
-// const htmlContainer = document.querySelector(".htmlDiv");
+const htmlOption = document.getElementById("htmlOption");
+const mainContainer = document.querySelector(".gridContainer");
+const htmlContainer = document.querySelector(".htmlQuestions");
 
 // htmlOption.addEventListener("click", (event) => {
 //   mainContainer.classList.add("unactive");
@@ -15,10 +15,12 @@ const optionHeader = document.getElementById("optionIn");
 const image = document.getElementById("imageIC");
 const questionCount = document.getElementById("questionCount");
 const slider = document.getElementById("inputSlider");
+const scorePage = document.querySelector(".scorePage");
 
 let currentQuestionIndex = 0;
 let currenQuestion = 1;
 let informationData;
+let count = 0;
 
 fetch("data.json")
   .then((response) => {
@@ -61,14 +63,15 @@ function handleQuestion(indexx, info) {
   });
 
   handleActiveButton();
-  // correctAnswer();
 }
 
 function handleActive() {
+  console.log("handleActive called");
   optionContainer.forEach((item) => {
     item.addEventListener("click", () => {
       optionContainer.forEach((option) => {
         option.classList.remove("active");
+        option.querySelector("#optionSpan").style.backgroundColor = "red";
 
         option.querySelector("#optionSpan").style.backgroundColor = "#edf1f9";
         option.querySelector("#optionSpan").style.color = "#626c7f";
@@ -77,7 +80,6 @@ function handleActive() {
       item.querySelector("#optionSpan").style.backgroundColor = "#a729f5";
       item.querySelector("#optionSpan").style.color = "#ffffff";
       handleActiveButton();
-      // correctAnswer(currentQuestionIndex, currenQuestion);
     });
   });
 }
@@ -104,6 +106,7 @@ function correctAnswer(questionIndex) {
     informationData?.quizzes[0]?.questions[questionIndex]?.answer;
 
   if (answerText === correctAns) {
+    count++;
     hasActiveClass.classList.replace("active", "correctAnswer");
     nextQuestion.style.display = "block";
     nextButton.style.display = "none";
@@ -119,7 +122,32 @@ function correctAnswer(questionIndex) {
         item.appendChild(img);
       }
     });
+  } else if (answerText !== correctAns) {
+    hasActiveClass.classList.replace("active", "wrongAnswer");
+    nextQuestion.style.display = "block";
+    nextButton.style.display = "none";
+
+    optionContainer.forEach((item) => {
+      if (item.querySelector(".answerText").textContent === correctAns) {
+        let img = document.createElement("img");
+        img.src = "assets/images/icon-correct.svg";
+        img.style.width = "28px";
+        img.style.marginLeft = "auto";
+
+        item.appendChild(img);
+      }
+      if (item.classList.contains("wrongAnswer")) {
+        item.querySelector("#optionSpan").style.backgroundColor = "#ee5454";
+        let img = document.createElement("img");
+        img.src = "assets/images/icon-incorrect.svg";
+        img.style.width = "28px";
+        img.style.marginLeft = "auto";
+        item.appendChild(img);
+      }
+    });
   }
+
+  // console.log(count);
 }
 
 //Next Button Functionality
@@ -130,11 +158,21 @@ nextButton.addEventListener("click", (event) => {
 
 nextQuestion.addEventListener("click", () => {
   document.querySelector(".correctAnswer")?.classList.remove("correctAnswer");
+  document.querySelector(".wrongAnswer")?.classList.remove("wrongAnswer");
   currentQuestionIndex++;
-  if (currenQuestion <= 9) {
-    currenQuestion++;
-  }
+  currenQuestion++;
+
+  console.log(currenQuestion);
+  // if (currenQuestion <= 9) {
+  //   console.log(currenQuestion);
+  //   currenQuestion++;
+  // }
   handleQuestion(currentQuestionIndex, informationData);
   nextQuestion.style.display = "none";
   nextButton.style.display = "block";
+
+  if (currenQuestion > 10) {
+    htmlContainer.style.display = "none";
+    scorePage.style.display = "block";
+  }
 });
