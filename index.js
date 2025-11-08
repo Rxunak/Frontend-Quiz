@@ -46,6 +46,7 @@ function handleQuestion(indexx, info) {
 
   optionHeader.textContent = info.quizzes[0].title;
   image.src = info.quizzes[0].icon;
+
   questionCount.innerText = `Question ${currenQuestion} of ${info.quizzes[0].questions.length}`;
 
   slider.value = indexx;
@@ -66,7 +67,6 @@ function handleQuestion(indexx, info) {
 }
 
 function handleActive() {
-  console.log("handleActive called");
   optionContainer.forEach((item) => {
     item.addEventListener("click", () => {
       optionContainer.forEach((option) => {

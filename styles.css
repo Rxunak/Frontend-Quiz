@@ -86,15 +86,15 @@ main {
 
 .html, .accessibility, .javasript, .css {
   background-color: #fff5ed;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
   border-radius: 5px;
 }
 
 .htmlIcon, .accessibilityIcon, .javasriptIcon, .cssIcon {
-  width: 30px;
+  width: 40px;
 }
 
 .css {
@@ -219,11 +219,13 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-left: 5rem;
 }
 
 .settings {
   display: flex;
   gap: 10px;
+  margin-right: 5rem;
 }
 
 .gridHtmlTwo {
@@ -271,7 +273,7 @@ input:checked + .slider:before {
   font-weight: 450;
 }
 
-.confirmQuestion, .nextQuestion {
+.confirmQuestion, .playAgain, .nextQuestion {
   height: 63px;
   width: 470px;
   border-radius: 15px;
@@ -345,5 +347,82 @@ input:checked + .slider:before {
 }
 
 .scorePage {
+  outline: 2px solid black;
   display: block;
+  height: 100vh;
+  width: 100%;
+}
+
+.scorePageGridContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 10rem;
+}
+
+.gridScore {
+  outline: 2px solid black;
+}
+
+.scoreOne {
+  outline: none;
+  grid-column: 1/span 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.scoreThree {
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 7rem;
+}
+
+.scoreTwo {
+  outline: none;
+}
+
+.scoreDiv {
+  width: 400px;
+  height: 260px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.titleInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.playAgain {
+  width: 400px;
+}
+
+.scoreNumber {
+  font-size: 7rem;
+  font-weight: 600;
+  color: #313e51;
+}
+
+.scoreSecondTitle {
+  font-size: 20px;
+  color: #313e51;
+}
+
+.welcomeTextScore {
+  font-size: 3.2rem;
+  font-weight: 100;
+  color: #313e51;
+  line-height: 110%;
+  margin-bottom: 2.5rem;
+  margin-left: 5rem;
 }/*# sourceMappingURL=styles.css.map */
