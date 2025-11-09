@@ -16,6 +16,14 @@ const slider = document.getElementById("inputSlider");
 const scorePage = document.querySelector(".scorePage");
 const testContainer = document.querySelectorAll(".optionDiv");
 const background = document.querySelector(".changeColor");
+const backgroundScore = document.querySelector(".changeColorScore");
+const backgroundScoreSecond = document.querySelector(".changeColorScoreSecond");
+const optionScore = document.getElementById("optionScore");
+const imageScore = document.getElementById("imageScore");
+const secondTitle = document.querySelector(".scoreSecondTitle");
+const secondImage = document.getElementById("htmlIconSecond");
+const darkModeSwitch = document.querySelector(".switch");
+const main = document.querySelector(".mainContainer");
 
 let currentQuestionIndex = 0;
 let currentQuizIndex;
@@ -38,21 +46,29 @@ testContainer.forEach((item) =>
     ) {
       currentQuizIndex = 0;
       background.classList.add("html");
+      backgroundScore.classList.add("html");
+      backgroundScoreSecond.classList.add("html");
     } else if (
       item.classList.contains("activeClass") &&
       item.querySelector("span").classList.contains("css")
     ) {
       currentQuizIndex = 1;
       background.classList.add("css");
+      backgroundScore.classList.add("css");
+      backgroundScoreSecond.classList.add("css");
     } else if (
       item.classList.contains("activeClass") &&
       item.querySelector("span").classList.contains("javasript")
     ) {
       currentQuizIndex = 2;
       background.classList.add("javasript");
+      backgroundScore.classList.add("javasript");
+      backgroundScoreSecond.classList.add("javasript");
     } else {
       currentQuizIndex = 3;
       background.classList.add("accessibility");
+      backgroundScore.classList.add("accessibility");
+      backgroundScoreSecond.classList.add("accessibility");
     }
     handleQuestion(currentQuestionIndex, informationData, currentQuizIndex);
   })
@@ -207,6 +223,12 @@ nextQuestion.addEventListener("click", () => {
   if (currenQuestion > 10) {
     quizContainer.style.display = "none";
     scorePage.style.display = "block";
+    optionScore.textContent = informationData.quizzes[currentQuizIndex].title;
+    secondTitle.textContent = informationData.quizzes[currentQuizIndex].title;
+    imageScore.src = informationData.quizzes[currentQuizIndex].icon;
+    secondImage.src = informationData.quizzes[currentQuizIndex].icon;
+
+    console.log(informationData.quizzes[currentQuizIndex].icon);
   }
 });
 
@@ -254,4 +276,10 @@ palayAgainButton.addEventListener("click", () => {
 backHome.addEventListener("click", () => {
   scoreContainer.style.display = "none";
   mainContainer.style.display = "block";
+});
+
+//Dark Mode
+darkModeSwitch.addEventListener("click", () => {
+  main.style.backgroundImage =
+    "url('assets/images/pattern-background-desktop-dark.svg')";
 });

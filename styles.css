@@ -223,15 +223,23 @@ input:checked + .slider:before {
   justify-content: space-between;
 }
 
-.optionType {
+.optionType, .optionTypeScore {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.settings {
+.optionTypeScore {
+  margin-left: 5rem;
+}
+
+.settings, .settingsScore {
   display: flex;
   gap: 10px;
+}
+
+.settingsScore {
+  margin-right: 5rem;
 }
 
 .gridHtmlTwo {
@@ -385,7 +393,7 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding-left: 7rem;
+  padding-left: 12rem;
 }
 
 .scoreTwo {
@@ -401,6 +409,7 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 1.8rem;
 }
 
 .titleInfo {
