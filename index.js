@@ -1,12 +1,10 @@
-const htmlOption = document.getElementById("htmlOption");
-const mainContainer = document.querySelector(".gridContainer");
-const htmlContainer = document.querySelector(".htmlQuestions");
-
-// htmlOption.addEventListener("click", (event) => {
-//   mainContainer.classList.add("unactive");
-//   htmlContainer.style.display = "block";
-// });
-
+const mainContainer = document.querySelector(".landing");
+const quizContainer = document.querySelector(".quizQuestions");
+const cssContainer = document.querySelector(".CSSQuestions");
+const palayAgainButton = document.querySelector(".playAgain");
+const backHome = document.querySelector(".backToHome");
+const scoreContainer = document.querySelector(".scorePage");
+const scoreNumber = document.querySelector(".scoreNumber");
 const questionContainer = document.querySelector(".questionContainer");
 const optionContainer = document.querySelectorAll(".optionContainer");
 const nextButton = document.querySelector(".confirmQuestion");
@@ -16,11 +14,49 @@ const image = document.getElementById("imageIC");
 const questionCount = document.getElementById("questionCount");
 const slider = document.getElementById("inputSlider");
 const scorePage = document.querySelector(".scorePage");
+const testContainer = document.querySelectorAll(".optionDiv");
+const background = document.querySelector(".changeColor");
 
 let currentQuestionIndex = 0;
+let currentQuizIndex;
 let currenQuestion = 1;
 let informationData;
 let count = 0;
+
+testContainer.forEach((item) =>
+  item.addEventListener("click", () => {
+    item.classList.add("activeClass");
+
+    if (item.classList.contains("activeClass")) {
+      mainContainer.classList.add("unactive");
+      quizContainer.style.display = "block";
+    }
+
+    if (
+      item.classList.contains("activeClass") &&
+      item.querySelector("span").classList.contains("html")
+    ) {
+      currentQuizIndex = 0;
+      background.classList.add("html");
+    } else if (
+      item.classList.contains("activeClass") &&
+      item.querySelector("span").classList.contains("css")
+    ) {
+      currentQuizIndex = 1;
+      background.classList.add("css");
+    } else if (
+      item.classList.contains("activeClass") &&
+      item.querySelector("span").classList.contains("javasript")
+    ) {
+      currentQuizIndex = 2;
+      background.classList.add("javasript");
+    } else {
+      currentQuizIndex = 3;
+      background.classList.add("accessibility");
+    }
+    handleQuestion(currentQuestionIndex, informationData, currentQuizIndex);
+  })
+);
 
 fetch("data.json")
   .then((response) => {
@@ -34,30 +70,32 @@ fetch("data.json")
 
 function getData(data) {
   informationData = data;
-  handleQuestion(currentQuestionIndex, data);
+  handleQuestion(currentQuestionIndex, data, currentQuizIndex);
 }
 
-function handleQuestion(indexx, info) {
+function handleQuestion(indexx, info, quizIndex) {
   const letterArray = ["A", "B", "C", "D"];
 
-  if (info.quizzes[0].questions[indexx]?.question != undefined) {
-    questionContainer.innerHTML = `<h1 class="question-title">${info.quizzes[0].questions[indexx].question}</h1>`;
+  if (info.quizzes[quizIndex].questions[indexx]?.question != undefined) {
+    questionContainer.innerHTML = `<h1 class="question-title">${info.quizzes[quizIndex].questions[indexx].question}</h1>`;
   }
 
-  optionHeader.textContent = info.quizzes[0].title;
-  image.src = info.quizzes[0].icon;
+  optionHeader.textContent = info.quizzes[quizIndex].title;
+  image.src = info.quizzes[quizIndex].icon;
 
-  questionCount.innerText = `Question ${currenQuestion} of ${info.quizzes[0].questions.length}`;
+  questionCount.innerText = `Question ${currenQuestion} of ${info.quizzes[quizIndex].questions.length}`;
 
   slider.value = indexx;
-  slider.max = info.quizzes[0].questions.length - 1;
+  slider.max = info.quizzes[quizIndex].questions.length - 1;
   const percentage = ((indexx - slider.min) / (slider.max - slider.min)) * 100;
 
   slider.style.setProperty("--value", percentage + "%");
 
   optionContainer.forEach((item, index) => {
-    if (info?.quizzes[0]?.questions[indexx]?.options[index] != undefined) {
-      item.innerHTML = `<span id="optionSpan">${letterArray[index]}</span> <p class="answerText">${info?.quizzes[0]?.questions[indexx]?.options[index]}</p>`;
+    if (
+      info?.quizzes[quizIndex]?.questions[indexx]?.options[index] != undefined
+    ) {
+      item.innerHTML = `<span id="optionSpan">${letterArray[index]}</span> <p class="answerText">${info?.quizzes[quizIndex]?.questions[indexx]?.options[index]}</p>`;
       item.style.cursor = "pointer";
       item.classList.remove("active");
     }
@@ -103,7 +141,8 @@ function correctAnswer(questionIndex) {
 
   const answerText = hasActiveClass?.querySelector(".answerText").textContent;
   const correctAns =
-    informationData?.quizzes[0]?.questions[questionIndex]?.answer;
+    informationData?.quizzes[currentQuizIndex]?.questions[questionIndex]
+      ?.answer;
 
   if (answerText === correctAns) {
     count++;
@@ -122,6 +161,7 @@ function correctAnswer(questionIndex) {
         item.appendChild(img);
       }
     });
+    scoreNumber.textContent = count;
   } else if (answerText !== correctAns) {
     hasActiveClass.classList.replace("active", "wrongAnswer");
     nextQuestion.style.display = "block";
@@ -146,8 +186,6 @@ function correctAnswer(questionIndex) {
       }
     });
   }
-
-  // console.log(count);
 }
 
 //Next Button Functionality
@@ -162,17 +200,58 @@ nextQuestion.addEventListener("click", () => {
   currentQuestionIndex++;
   currenQuestion++;
 
-  console.log(currenQuestion);
-  // if (currenQuestion <= 9) {
-  //   console.log(currenQuestion);
-  //   currenQuestion++;
-  // }
-  handleQuestion(currentQuestionIndex, informationData);
+  handleQuestion(currentQuestionIndex, informationData, currentQuizIndex);
   nextQuestion.style.display = "none";
   nextButton.style.display = "block";
 
   if (currenQuestion > 10) {
-    htmlContainer.style.display = "none";
+    quizContainer.style.display = "none";
     scorePage.style.display = "block";
   }
+});
+
+//reset values
+
+function reset(indexx, info) {
+  const letterArray = ["A", "B", "C", "D"];
+  questionCount.innerText = `Question ${currenQuestion} of ${info.quizzes[currentQuizIndex].questions.length}`;
+
+  if (
+    info.quizzes[currentQuizIndex]?.questions[indexx]?.question != undefined
+  ) {
+    questionContainer.innerHTML = `<h1 class="question-title">${info.quizzes[currentQuizIndex].questions[indexx].question}</h1>`;
+  }
+
+  slider.value = indexx;
+  slider.max = info.quizzes[currentQuizIndex]?.questions.length - 1;
+  const percentage = ((indexx - slider.min) / (slider.max - slider.min)) * 100;
+
+  slider.style.setProperty("--value", percentage + "%");
+
+  optionContainer.forEach((item, index) => {
+    if (
+      info?.quizzes[currentQuizIndex]?.questions[indexx]?.options[index] !=
+      undefined
+    ) {
+      item.innerHTML = `<span id="optionSpan">${letterArray[index]}</span> <p class="answerText">${info?.quizzes[currentQuizIndex]?.questions[indexx]?.options[index]}</p>`;
+      item.style.cursor = "pointer";
+      item.classList.remove("active");
+    }
+  });
+}
+
+//play again button functionality
+
+palayAgainButton.addEventListener("click", () => {
+  quizContainer.style.display = "block";
+  scoreContainer.style.display = "none";
+  currenQuestion = 1;
+  currentQuestionIndex = 0;
+  count = 0;
+  reset(currentQuestionIndex, informationData);
+});
+
+backHome.addEventListener("click", () => {
+  scoreContainer.style.display = "none";
+  mainContainer.style.display = "block";
 });

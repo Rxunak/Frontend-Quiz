@@ -16,7 +16,7 @@ main {
   background-size: 100% 100%;
 }
 
-.gridContainer, .htmlDiv {
+.gridContainer, .cssDiv, .quizContainer {
   width: auto;
   height: auto;
   display: grid;
@@ -27,16 +27,16 @@ main {
 }
 
 .landing {
-  display: none;
+  display: block;
 }
 
-.gridItem, .gridItemHTML {
+.gridItem, .gridItemCSS, .gridItemQ {
   outline: 2px solid black;
   width: 100px;
   height: 200px;
 }
 
-.gridOne, .gridHtmlOne {
+.gridOne, .gridCssOne, .gridHtmlOne {
   outline: none;
   display: flex;
   flex-direction: row;
@@ -192,7 +192,11 @@ input:checked + .slider:before {
   display: none;
 }
 
-.htmlQuestions {
+.quizQuestions {
+  display: none;
+}
+
+.CSSQuestions {
   display: none;
 }
 
@@ -215,17 +219,19 @@ input:checked + .slider:before {
   justify-content: space-between;
 }
 
+.gridCssOne {
+  justify-content: space-between;
+}
+
 .optionType {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-left: 5rem;
 }
 
 .settings {
   display: flex;
   gap: 10px;
-  margin-right: 5rem;
 }
 
 .gridHtmlTwo {
@@ -273,9 +279,9 @@ input:checked + .slider:before {
   font-weight: 450;
 }
 
-.confirmQuestion, .playAgain, .nextQuestion {
+.confirmQuestion, .playAgain, .backToHome, .nextQuestion {
   height: 63px;
-  width: 470px;
+  width: 480px;
   border-radius: 15px;
   border: none;
   background-color: #a729f5;
@@ -348,7 +354,7 @@ input:checked + .slider:before {
 
 .scorePage {
   outline: 2px solid black;
-  display: block;
+  display: none;
   height: 100vh;
   width: 100%;
 }
@@ -387,8 +393,8 @@ input:checked + .slider:before {
 }
 
 .scoreDiv {
-  width: 400px;
-  height: 260px;
+  width: 470px;
+  height: 350px;
   background-color: #ffffff;
   border-radius: 20px;
   display: flex;
@@ -403,8 +409,8 @@ input:checked + .slider:before {
   gap: 10px;
 }
 
-.playAgain {
-  width: 400px;
+.playAgain, .backToHome {
+  width: 470px;
 }
 
 .scoreNumber {
@@ -419,7 +425,7 @@ input:checked + .slider:before {
 }
 
 .welcomeTextScore {
-  font-size: 3.2rem;
+  font-size: 5rem;
   font-weight: 100;
   color: #313e51;
   line-height: 110%;
