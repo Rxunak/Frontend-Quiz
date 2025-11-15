@@ -48,6 +48,7 @@ testContainer.forEach((item) =>
       background.classList.add("html");
       backgroundScore.classList.add("html");
       backgroundScoreSecond.classList.add("html");
+      mainContainer.style.display = "none";
     } else if (
       item.classList.contains("activeClass") &&
       item.querySelector("span").classList.contains("css")
@@ -56,6 +57,7 @@ testContainer.forEach((item) =>
       background.classList.add("css");
       backgroundScore.classList.add("css");
       backgroundScoreSecond.classList.add("css");
+      mainContainer.style.display = "none";
     } else if (
       item.classList.contains("activeClass") &&
       item.querySelector("span").classList.contains("javasript")
@@ -64,11 +66,13 @@ testContainer.forEach((item) =>
       background.classList.add("javasript");
       backgroundScore.classList.add("javasript");
       backgroundScoreSecond.classList.add("javasript");
+      mainContainer.style.display = "none";
     } else {
       currentQuizIndex = 3;
       background.classList.add("accessibility");
       backgroundScore.classList.add("accessibility");
       backgroundScoreSecond.classList.add("accessibility");
+      mainContainer.style.display = "none";
     }
     handleQuestion(currentQuestionIndex, informationData, currentQuizIndex);
   })
@@ -234,7 +238,9 @@ nextQuestion.addEventListener("click", () => {
 
 //reset values
 
-function reset(indexx, info) {
+function resetContainer(indexx, info) {
+  console.log(indexx, info);
+  console.log("reset container called");
   const letterArray = ["A", "B", "C", "D"];
   questionCount.innerText = `Question ${currenQuestion} of ${info.quizzes[currentQuizIndex].questions.length}`;
 
@@ -262,20 +268,28 @@ function reset(indexx, info) {
   });
 }
 
+//reset values
+
+const resetValue = () => {
+  currenQuestion = 1;
+  currentQuestionIndex = 0;
+  count = 0;
+};
+
 //play again button functionality
 
 palayAgainButton.addEventListener("click", () => {
   quizContainer.style.display = "block";
   scoreContainer.style.display = "none";
-  currenQuestion = 1;
-  currentQuestionIndex = 0;
-  count = 0;
-  reset(currentQuestionIndex, informationData);
+  resetValue();
+  resetContainer(currentQuestionIndex, informationData);
 });
 
 backHome.addEventListener("click", () => {
   scoreContainer.style.display = "none";
   mainContainer.style.display = "block";
+  resetValue();
+  resetContainer(currentQuestionIndex, informationData);
 });
 
 //Dark Mode
